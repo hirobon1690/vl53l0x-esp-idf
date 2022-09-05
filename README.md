@@ -1,13 +1,13 @@
-# VL53L0X library for Arduino
+# VL53L0X library for ESP-IDF
 [www.pololu.com](https://www.pololu.com/)
 
 ## Summary
 
-This is a library for the Arduino IDE that helps interface with ST's [VL53L0X time-of-flight distance sensor](https://www.pololu.com/product/2490). The library makes it simple to configure the sensor and read range data from it via I&sup2;C.
+This is a library for the [ESP-IDF](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/#) that helps interface with ST's [VL53L0X time-of-flight distance sensor](https://www.pololu.com/product/2490). The library makes it simple to configure the sensor and read range data from it via I&sup2;C.
 
 ## Supported platforms
 
-This library is designed to work with the Arduino IDE versions 1.6.x or later; we have not tested it with earlier versions.  This library should support any Arduino-compatible board, including the [Pololu A-Star 32U4 controllers](https://www.pololu.com/category/149/a-star-programmable-controllers).
+This library is designed to work with the ESP-IDF versions 4.0 or later; we have not tested it with earlier versions.  This library should support any ESP32-compatible board.
 
 ## Getting started
 
@@ -17,18 +17,7 @@ A [VL53L0X carrier](https://www.pololu.com/product/2490) can be purchased from P
 
 Make the following connections between the Arduino and the VL53L0X board:
 
-#### 5V Arduino boards
-
-(including Arduino Uno, Leonardo, Mega; Pololu A-Star 32U4)
-
-    Arduino   VL53L0X board
-    -------   -------------
-         5V - VIN
-        GND - GND
-        SDA - SDA
-        SCL - SCL
-
-#### 3.3V Arduino boards
+#### 3.3VESP32 boards
 
 (including Arduino Due)
 
@@ -36,28 +25,13 @@ Make the following connections between the Arduino and the VL53L0X board:
     -------   -------------
         3V3 - VIN
         GND - GND
-        SDA - SDA
-        SCL - SCL
+    SDA(21) - SDA
+    SCL(22) - SCL
 
-### Software
-
-If you are using version 1.6.2 or later of the [Arduino software (IDE)](http://www.arduino.cc/en/Main/Software), you can use the Library Manager to install this library:
-
-1. In the Arduino IDE, open the "Sketch" menu, select "Include Library", then "Manage Libraries...".
-2. Search for "VL53L0X".
-3. Click the VL53L0X entry in the list.
-4. Click "Install".
-
-If this does not work, you can manually install the library:
-
-1. Download the [latest release archive from GitHub](https://github.com/pololu/vl53l0x-arduino/releases) and decompress it.
-2. Rename the folder "vl53l0x-arduino-master" to "VL53L0X".
-3. Move the "VL53L0X" folder into the "libraries" directory inside your Arduino sketchbook directory.  You can view your sketchbook location by opening the "File" menu and selecting "Preferences" in the Arduino IDE.  If there is not already a "libraries" folder in that location, you should make the folder yourself.
-4. After installing the library, restart the Arduino IDE.
 
 ## Examples
 
-Several example sketches are available that show how to use the library. You can access them from the Arduino IDE by opening the "File" menu, selecting "Examples", and then selecting "VL53L0X". If you cannot find these examples, the library was probably installed incorrectly and you should retry the installation instructions above.
+Several example sketches are available that show how to use the library. Example files are located in ./examples/.
 
 ## ST's VL53L0X API and this library
 
@@ -67,17 +41,8 @@ This library is intended to provide a quicker and easier way to get started usin
 
 ## Library reference
 
-* `uint8_t last_status`<br>
-  The status of the last I&sup2;C write transmission. See the [`Wire.endTransmission()` documentation](http://arduino.cc/en/Reference/WireEndTransmission) for return values.
-
 * `VL53L0X()`<br>
   Constructor.
-
-* `void setBus(TwoWire * bus)`<br>
-  Configures this object to use the specified I&sup2;C bus. `bus` should be a pointer to a `TwoWire` object; the default bus is `Wire`, which is typically the first or only I&sup2;C bus on an Arduino. If your Arduino has more than one I&sup2;C bus and you have the VL53L0X connected to the second bus, which is typically called `Wire1`, you can call `sensor.setBus(&Wire1);`.
-
-* `TwoWire * getBus()`<br>
-  Returns a pointer to the I&sup2;C bus this object is using.
 
 * `void setAddress(uint8_t new_addr)`<br>
   Changes the I&sup2;C slave device address of the VL53L0X to the given value (7-bit).
@@ -160,7 +125,7 @@ This library is intended to provide a quicker and easier way to get started usin
   Indicates whether a read timeout has occurred since the last call to `timeoutOccurred()`.
 
 ## Version history
-
+* Fork(2022-09-06): Changed code for ESP-IDF compatible.
 * 1.3.1 (2022-04-05): Explicitly cast `Wire.write()` arguments to `uint8_t`. Removed 20ms hard limit for timing budget to match API 1.0.4.
 * 1.3.0 (2020-09-24): Added support for alternative I&sup2;C buses (thanks KurtE).
 * 1.2.0 (2019-10-31): Incorporated some updates from ST's VL53L0X API version 1.0.2 (this library was originally based on API version 1.0.0).
