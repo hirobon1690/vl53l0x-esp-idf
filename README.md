@@ -15,11 +15,11 @@ This library is designed to work with the ESP-IDF versions 4.0 or later; we have
 
 A [VL53L0X carrier](https://www.pololu.com/product/2490) can be purchased from Pololu's website.  Before continuing, careful reading of the [product page](https://www.pololu.com/product/2490) as well as the VL53L0X datasheet is recommended.
 
-Make the following connections between the Arduino and the VL53L0X board:
+Make the following connections between the ESP32 and the VL53L0X board:
 
 #### 3.3V ESP32 boards
 
-    Arduino   VL53L0X board
+      ESP32   VL53L0X board
     -------   -------------
         3V3 - VIN
         GND - GND
@@ -35,7 +35,7 @@ Several example sketches are available that show how to use the library. Example
 
 Most of the functionality of this library is based on the [VL53L0X API](http://www.st.com/content/st_com/en/products/embedded-software/proximity-sensors-software/stsw-img005.html) provided by ST (STSW-IMG005), and some of the explanatory comments in the code are quoted or paraphrased from the API source code, API user manual (UM2039), and the VL53L0X datasheet. For more explanation about the library code and how it was derived from the API, see the comments in VL53L0X.cpp.
 
-This library is intended to provide a quicker and easier way to get started using the VL53L0X with an Arduino-compatible controller, in contrast to customizing and compiling ST's API for the Arduino. The library has a more streamlined interface, as well as smaller storage and memory footprints. However, it does not implement some of the more advanced functionality available in the API (for example, calibrating the sensor to work well under a cover glass), and it has less robust error checking. For advanced applications, especially when storage and memory are less of an issue, consider using the VL53L0X API directly.
+This library is intended to provide a quicker and easier way to get started using the VL53L0X with an ESP32-compatible controller, in contrast to customizing and compiling ST's API for the ESP32. The library has a more streamlined interface, as well as smaller storage and memory footprints. However, it does not implement some of the more advanced functionality available in the API (for example, calibrating the sensor to work well under a cover glass), and it has less robust error checking. For advanced applications, especially when storage and memory are less of an issue, consider using the VL53L0X API directly.
 
 ## Library reference
 
