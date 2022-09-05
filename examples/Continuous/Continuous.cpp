@@ -19,7 +19,7 @@ void app_main() {
     i2c.init();
     sensor.setTimeout(500);
     if (!sensor.init()) {
-        Serial.println("Failed to detect and initialize sensor!");
+        printf("Failed to detect and initialize sensor!\n");
         while (1) {
             vTaskDelay(10 / portTICK_RATE_MS);
         }
