@@ -17,9 +17,7 @@ A [VL53L0X carrier](https://www.pololu.com/product/2490) can be purchased from P
 
 Make the following connections between the Arduino and the VL53L0X board:
 
-#### 3.3VESP32 boards
-
-(including Arduino Due)
+#### 3.3V ESP32 boards
 
     Arduino   VL53L0X board
     -------   -------------
